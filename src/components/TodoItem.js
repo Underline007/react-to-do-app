@@ -2,16 +2,23 @@ import React, { Component } from "react";
 
 export class TodoItem extends Component {
   render() {
+    const { completed, id, title } = this.props.todo;
     return (
       <li className="todo-item">
         <input
           type="checkbox"
-          checked={this.props.todo.completed}
-          onChange={() => {
-            console.log("clicked");
-          }}
+          checked={completed}
+          onChange={() => this.props.handleChange(id)}
         />
-        {this.props.todo.title}
+        <span className={completed ? "completed" : null}>{title}</span>
+        <button
+          className="btn-style"
+          onClick={() => {
+            this.props.deleteTodo(id);
+          }}
+        >
+          X
+        </button>
       </li>
     );
   }
