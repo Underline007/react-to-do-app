@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./layout/Header";
 import Todos from "./Todos";
+import AddTodo from "./AddTodo";
 
 export class TodoApp extends Component {
   state = {
@@ -29,10 +30,15 @@ export class TodoApp extends Component {
       ],
     });
   };
+  addTodo = (title) => {
+    const newTodo = { id: 4, title: title, completed: false };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
   render() {
     return (
       <div>
         <Header />
+        <AddTodo addTodo={this.addTodo} />
         <Todos
           todos={this.state.todos}
           handleChange={this.handleCheckboxChange}
